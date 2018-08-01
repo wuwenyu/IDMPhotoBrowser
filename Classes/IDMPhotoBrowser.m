@@ -327,15 +327,21 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 
             CGFloat animationDuration = 0.35;
 
-            [UIView beginAnimations:nil context:NULL];
-            [UIView setAnimationDuration:animationDuration];
-            [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-            [UIView setAnimationDelegate:self];
-            [scrollView setCenter:CGPointMake(finalX, finalY)];
-            self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
-            [UIView commitAnimations];
-
-            [self performSelector:@selector(doneButtonPressed:) withObject:self afterDelay:animationDuration];
+            if (_senderViewForAnimation) {
+                [UIView beginAnimations:nil context:NULL];
+                [UIView setAnimationDuration:animationDuration];
+                [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+                [UIView setAnimationDelegate:self];
+                [scrollView setCenter:CGPointMake(finalX, finalY)];
+                self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+                [UIView commitAnimations];
+                
+                [self performSelector:@selector(doneButtonPressed:) withObject:self afterDelay:animationDuration];
+            }else {
+                //防止传入nil的时候有可能出现视图抖动的情况
+                [self doneButtonPressed:nil];
+            }
+            
         }
         else // Continue Showing View
         {

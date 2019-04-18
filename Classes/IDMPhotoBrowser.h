@@ -49,8 +49,6 @@
 @property (nonatomic) BOOL useWhiteBackgroundColor;
 @property (nonatomic, weak) UIImage *doneButtonImage;
 @property (nonatomic, weak) UIColor *trackTintColor, *progressTintColor;
-@property (nonatomic, assign) CGFloat doneButtonRightInset, doneButtonTopInset;
-@property (nonatomic, assign) CGSize doneButtonSize;
 
 @property (nonatomic, weak) UIImage *scaleImage;
 
@@ -76,13 +74,13 @@
 - (id)initWithPhotos:(NSArray *)photosArray;
 
 // Init (animated from view)
-- (id)initWithPhotos:(NSArray *)photosArray animatedFromView:(UIView*)view;
+- (id)initWithPhotos:(NSArray *)photosArray animatedFromViews:(NSArray <UIView *>*)views;
 
 // Init with NSURL objects
 - (id)initWithPhotoURLs:(NSArray *)photoURLsArray;
 
 // Init with NSURL objects (animated from view)
-- (id)initWithPhotoURLs:(NSArray *)photoURLsArray animatedFromView:(UIView*)view;
+- (id)initWithPhotoURLs:(NSArray *)photoURLsArray animatedFromViews:(NSArray <UIView *>*)views;
 
 // Reloads the photo browser and refetches data
 - (void)reloadData;

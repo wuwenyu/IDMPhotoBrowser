@@ -203,7 +203,11 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
         }
         
         _applicationWindow = [[[UIApplication sharedApplication] delegate] window];
-        self.modalPresentationStyle = UIModalPresentationCustom;
+        if (@available(iOS 13.0, *)) {
+            self.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+        }else {
+            self.modalPresentationStyle = UIModalPresentationCustom;
+        }
         self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         self.modalPresentationCapturesStatusBarAppearance = YES;
         
